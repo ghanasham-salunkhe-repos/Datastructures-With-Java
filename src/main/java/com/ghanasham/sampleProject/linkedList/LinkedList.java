@@ -13,17 +13,14 @@ public abstract class LinkedList<T> {
     // append element at last
     public abstract void append(T item);
 
-    // insert after some value
-    public abstract void insertAfter(T item);
-
-    // insert before some value
-    public abstract void insertBefore(T item);
+    // insert after item at index
+    public abstract void insert(int index, T item);
 
     // print complete linked list
     public abstract void printLinkedList();
 
     // remove perticular value
-    public abstract NodeInLinkedList<T> remove(T item);
+    public abstract NodeInLinkedList<T> remove(int index);
 
     //remove tail
     public abstract NodeInLinkedList<T> removeHead();
@@ -31,6 +28,14 @@ public abstract class LinkedList<T> {
     //remove head
     public abstract NodeInLinkedList<T> removeTail();
 
+    // get value at index
+    public abstract NodeInLinkedList<T> get(int index);
+
+    // set value at perticular index
+    public abstract void set(int index, T item);
+
+    // reverse list
+    public abstract void reverse();
 
     // member functions
     public NodeInLinkedList<T> getHead() {

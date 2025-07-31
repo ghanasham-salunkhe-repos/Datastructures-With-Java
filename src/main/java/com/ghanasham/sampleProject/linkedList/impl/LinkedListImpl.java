@@ -49,6 +49,25 @@ public class LinkedListImpl<T> extends LinkedList<T> {
         length++;
     }
 
+//    complexity of o(n)
+    @Override
+    public void insert(int index, T item) {
+        
+        if (index==0){
+            prepend(item);
+        } else if (index==length) {
+            append(item);
+        }
+        else {
+            NodeInLinkedList<T> prev= get(index-1);
+            NodeInLinkedList<T> next = get(index);
+            NodeInLinkedList<T> newNode = new NodeInLinkedList<>();
+            newNode.setItem(item);
+            prev.setNext(newNode);
+            newNode.setNext(next);
+        }
+    }
+
     // print complete linked list : O(n)
     @Override
     public void printLinkedList() {
@@ -65,19 +84,26 @@ public class LinkedListImpl<T> extends LinkedList<T> {
         System.out.print(newNode.getItem()+" --> null\n");
     }
 
+
+    // remove function with time complexity : O(n)
     @Override
-    public void insertAfter(T item) {
+    public NodeInLinkedList<T> remove(int index) {
+        if (index==0) {
+            return removeHead();
+        }
+        else if (index==length-1) {
+            return removeTail();
+        }
+        else {
+            NodeInLinkedList<T> prev= get(index-1);
+            NodeInLinkedList<T> next = get(index+1);
+            NodeInLinkedList<T> nodeToBDeleted= get(index);
+            nodeToBDeleted.setNext(null);
+            prev.setNext(next);
+            length--;
+            return nodeToBDeleted;
+        }
 
-    }
-
-    @Override
-    public void insertBefore(T item) {
-
-    }
-
-    @Override
-    public NodeInLinkedList<T> remove(T item) {
-        return null;
     }
 
     // remove head : O(1)
@@ -110,6 +136,66 @@ public class LinkedListImpl<T> extends LinkedList<T> {
         return oldTail;
     }
 
+    // get value at perticular index : O(n)
+    @Override
+    public NodeInLinkedList<T> get(int index) {
+
+        if(index>length){
+            throw new IndexOutOfBoundsException();
+        }
+        else if(length==0){
+            return null;
+        } else if (index==0) {
+            return head;
+        }
+        else if (index==length-1) {
+            return tail;
+        }
+        else {
+            int count=0;
+            NodeInLinkedList<T> newNode = head;
+            while (count<index) {
+                newNode=newNode.getNext();
+                count++;
+            }
+            return newNode;
+        }
+
+    }
+
+    // set value : O(n)
+    @Override
+    public void set(int index, T item) {
+
+        if( index>length ){
+            throw new IndexOutOfBoundsException();
+        }
+        else if(index==0){
+            head.setItem(item);
+        }
+        else if (index==length-1) {
+            tail.setItem(item);
+        }
+        else {
+            get(index).setItem(item);
+        }
+    }
+
+    // reverse list  O(n)
+    @Override
+    public void reverse() {
+        NodeInLinkedList temp = head;
+        head = tail;
+        tail = temp;
+        NodeInLinkedList after = temp.getNext();
+        NodeInLinkedList before = null;
+        for (int i = 0; i < length; i++) {
+            after = temp.getNext();
+            temp.setNext(before);
+            before = temp;
+            temp = after;
+        }
+    }
 
     @Override
     public String toString() {

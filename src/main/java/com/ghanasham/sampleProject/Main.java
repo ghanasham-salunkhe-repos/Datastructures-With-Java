@@ -35,5 +35,25 @@ public class Main {
         System.out.println(list.getTail());
         System.out.println(list.getLength());
 
+        System.out.println(list.get(5));
+        list.set(0,199);
+        list.printLinkedList();
+
+        list.insert(7,88);
+        list.insert(0,88);
+        System.out.println(list.getLength());
+
+        System.out.println("====================================");
+
+        list.printLinkedList();
+        list.remove(0);
+        list.printLinkedList();
+        list.remove(5);
+        list.printLinkedList();
+        list.remove(list.getLength()-1);
+        list.printLinkedList();
+
+        list.reverse();
+        list.printLinkedList();
     }
 }
