@@ -1,12 +1,11 @@
 package com.ghanasham.sampleProject.DoublyLinkedList;
 
-import com.ghanasham.sampleProject.linkedList.NodeInLinkedList;
 
 public abstract class DoublyLinkedList<T> {
 
     protected NodeInDoublyLinkedList<T> head;
     protected NodeInDoublyLinkedList<T> tail;
-    protected  int length;
+    protected int length;
 
     // adding element to head
     public abstract void prepend(T item);
@@ -18,26 +17,25 @@ public abstract class DoublyLinkedList<T> {
     public abstract void insert(int index, T item);
 
     // print complete linked list
-    public abstract void printLinkedList();
+    public abstract void printDoublyLinkedList();
+
+    // print complete linkedlinkedlist in opposite order
+    public abstract void printReversedDoublyLinkedList();
 
     // remove perticular value
-    public abstract NodeInLinkedList<T> remove(int index);
+    public abstract NodeInDoublyLinkedList<T> remove(int index);
 
     //remove tail
-    public abstract NodeInLinkedList<T> removeHead();
+    public abstract NodeInDoublyLinkedList<T> removeHead();
 
     //remove head
-    public abstract NodeInLinkedList<T> removeTail();
+    public abstract NodeInDoublyLinkedList<T> removeTail();
 
     // get value at index
-    public abstract NodeInLinkedList<T> get(int index);
+    public abstract NodeInDoublyLinkedList<T> get(int index);
 
     // set value at perticular index
     public abstract void set(int index, T item);
-
-    // reverse list
-    public abstract void reverse();
-
 
     // member functions
     public NodeInDoublyLinkedList<T> getHead() {
