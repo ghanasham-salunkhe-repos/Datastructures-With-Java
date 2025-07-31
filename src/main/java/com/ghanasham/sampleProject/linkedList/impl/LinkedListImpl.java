@@ -11,23 +11,22 @@ public class LinkedListImpl<T> extends LinkedList<T> {
         head.setItem(item);
         head.setNext(null);
         tail = head;
-        length=1;
+        length = 1;
     }
 
     // adding element to head : O(1)
     @Override
     public void prepend(T item) {
         NodeInLinkedList<T> newNode = new NodeInLinkedList<>();
-        if( length==0){
+        if (length == 0) {
             newNode.setItem(item);
             newNode.setNext(null);
             head = newNode;
             tail = newNode;
-        }
-        else {
+        } else {
             newNode.setItem(item);
             newNode.setNext(head);
-            head=newNode;
+            head = newNode;
         }
         length++;
     }
@@ -38,28 +37,26 @@ public class LinkedListImpl<T> extends LinkedList<T> {
         NodeInLinkedList<T> newNode = new NodeInLinkedList<>();
         newNode.setItem(item);
         newNode.setNext(null);
-        if( length==0){
+        if (length == 0) {
             head = newNode;
             tail = newNode;
-        }
-        else {
+        } else {
             tail.setNext(newNode);
-            tail=newNode;
+            tail = newNode;
         }
         length++;
     }
 
-//    complexity of o(n)
+    //    complexity of o(n)
     @Override
     public void insert(int index, T item) {
-        
-        if (index==0){
+
+        if (index == 0) {
             prepend(item);
-        } else if (index==length) {
+        } else if (index == length) {
             append(item);
-        }
-        else {
-            NodeInLinkedList<T> prev= get(index-1);
+        } else {
+            NodeInLinkedList<T> prev = get(index - 1);
             NodeInLinkedList<T> next = get(index);
             NodeInLinkedList<T> newNode = new NodeInLinkedList<>();
             newNode.setItem(item);
@@ -78,26 +75,24 @@ public class LinkedListImpl<T> extends LinkedList<T> {
         NodeInLinkedList<T> newNode = head;
         System.out.print("head --> ");
         while (newNode.getNext() != null) {
-            System.out.print(newNode.getItem()+" --> ");
-            newNode=newNode.getNext();
+            System.out.print(newNode.getItem() + " --> ");
+            newNode = newNode.getNext();
         }
-        System.out.print(newNode.getItem()+" --> null\n");
+        System.out.print(newNode.getItem() + " --> null\n");
     }
 
 
     // remove function with time complexity : O(n)
     @Override
     public NodeInLinkedList<T> remove(int index) {
-        if (index==0) {
+        if (index == 0) {
             return removeHead();
-        }
-        else if (index==length-1) {
+        } else if (index == length - 1) {
             return removeTail();
-        }
-        else {
-            NodeInLinkedList<T> prev= get(index-1);
-            NodeInLinkedList<T> next = get(index+1);
-            NodeInLinkedList<T> nodeToBDeleted= get(index);
+        } else {
+            NodeInLinkedList<T> prev = get(index - 1);
+            NodeInLinkedList<T> next = get(index + 1);
+            NodeInLinkedList<T> nodeToBDeleted = get(index);
             nodeToBDeleted.setNext(null);
             prev.setNext(next);
             length--;
@@ -109,14 +104,14 @@ public class LinkedListImpl<T> extends LinkedList<T> {
     // remove head : O(1)
     @Override
     public NodeInLinkedList<T> removeHead() {
-        if(length==1){
-            head=null;
-            tail=null;
+        if (length == 1) {
+            head = null;
+            tail = null;
             length--;
             return null;
         }
         NodeInLinkedList<T> newNode = head;
-        head=head.getNext();
+        head = head.getNext();
         newNode.setNext(null);
         length--;
         return newNode;
@@ -126,11 +121,11 @@ public class LinkedListImpl<T> extends LinkedList<T> {
     @Override
     public NodeInLinkedList<T> removeTail() {
         NodeInLinkedList<T> newNode = head;
-        NodeInLinkedList<T> oldTail= tail;
-        while(newNode.getNext()!= oldTail) {
-            newNode=newNode.getNext();
+        NodeInLinkedList<T> oldTail = tail;
+        while (newNode.getNext() != oldTail) {
+            newNode = newNode.getNext();
         }
-        tail=newNode;
+        tail = newNode;
         tail.setNext(null);
         length--;
         return oldTail;
@@ -140,22 +135,19 @@ public class LinkedListImpl<T> extends LinkedList<T> {
     @Override
     public NodeInLinkedList<T> get(int index) {
 
-        if(index>length){
+        if (index > length) {
             throw new IndexOutOfBoundsException();
-        }
-        else if(length==0){
+        } else if (length == 0) {
             return null;
-        } else if (index==0) {
+        } else if (index == 0) {
             return head;
-        }
-        else if (index==length-1) {
+        } else if (index == length - 1) {
             return tail;
-        }
-        else {
-            int count=0;
+        } else {
+            int count = 0;
             NodeInLinkedList<T> newNode = head;
-            while (count<index) {
-                newNode=newNode.getNext();
+            while (count < index) {
+                newNode = newNode.getNext();
                 count++;
             }
             return newNode;
@@ -167,16 +159,13 @@ public class LinkedListImpl<T> extends LinkedList<T> {
     @Override
     public void set(int index, T item) {
 
-        if( index>length ){
+        if (index > length) {
             throw new IndexOutOfBoundsException();
-        }
-        else if(index==0){
+        } else if (index == 0) {
             head.setItem(item);
-        }
-        else if (index==length-1) {
+        } else if (index == length - 1) {
             tail.setItem(item);
-        }
-        else {
+        } else {
             get(index).setItem(item);
         }
     }

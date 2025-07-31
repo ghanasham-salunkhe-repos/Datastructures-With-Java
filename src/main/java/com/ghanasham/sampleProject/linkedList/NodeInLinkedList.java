@@ -3,7 +3,7 @@ package com.ghanasham.sampleProject.linkedList;
 
 public class NodeInLinkedList<T> {
     private T item;
-    private  NodeInLinkedList<T> next;
+    private NodeInLinkedList<T> next;
 
     public T getItem() {
         return item;
