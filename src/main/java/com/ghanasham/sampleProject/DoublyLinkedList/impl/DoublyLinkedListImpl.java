@@ -7,7 +7,7 @@ import com.ghanasham.sampleProject.DoublyLinkedList.NodeInDoublyLinkedList;
 public class DoublyLinkedListImpl<T> extends DoublyLinkedList<T> {
 
     public DoublyLinkedListImpl(T value) {
-        NodeInDoublyLinkedList node = new NodeInDoublyLinkedList();
+        NodeInDoublyLinkedList<T> node = new NodeInDoublyLinkedList<>();
         node.setData(value);
         node.setNext(null);
         node.setPrev(null);
